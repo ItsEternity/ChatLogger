@@ -2,12 +2,12 @@
 
 ChatLogger is a plugin that records all chat messages and commands that can later be viewed by administators
 
-##### Storage
+#### Storage
 Currently, only MySQL is supported for storing these chat messages. Adding insupport for other databases such as MongoDB
 is on my list of things to do for this project. 
 
 
-##### Viewing the chat logs
+#### Viewing the chat logs
 The three options for viewing logs are:
 * ~~Pasting to a file (must have access to the server folder to view)~~ Not supported yet
 * [Pastebin](https://pastebin.com/)

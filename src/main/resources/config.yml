@@ -29,5 +29,5 @@ messages:
   syntax-error: "&c /chatlogs <player>"
   loading-chatlogs: "&eLoading chatlogs for &b%player%"
   no-logs-found: "&cCould not find any chatlogs for %player%"
-  logs-link: "&a%player%'s &echatlogs: &a%link%"
+  logs-link: "&b%player%'s &echatlogs: &b%link%"
   cannot-find-uuid: "&cCannot find the UUID for %player%"
