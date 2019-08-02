@@ -1,5 +1,6 @@
 package dev.itseternity.chatlogger.storage;
 
+import com.google.common.base.Preconditions;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import dev.itseternity.chatlogger.ChatLoggerPlugin;
@@ -36,9 +37,10 @@ public class SQLChatStorage extends ChatStorage {
     @Override
     public void init() {
         HikariConfig config = generateConfig(credentials);
-        dataSource = new HikariDataSource(config);
-
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, this::setupTables);
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            dataSource = new HikariDataSource(config);
+            setupTables();
+        });
         Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, () -> {
             if (getLogs().size() <= 0) {
                 return;
@@ -48,9 +50,15 @@ public class SQLChatStorage extends ChatStorage {
         }, 20L * 60L, 20L * 60L);
     }
 
+    public Connection getConnection() throws SQLException {
+        Preconditions.checkArgument(dataSource.isRunning());
+
+        return dataSource.getConnection();
+    }
+
     @Override
     public void storeMessages() {
-        try (Connection connection = dataSource.getConnection()) {
+        try (Connection connection = getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(DatabaseConstants.INSERT_CHATLOG_QUERY)) {
                 plugin.getLogger().info("Attempting to save " + getLogs().size() + " messages...");
                 ChatLog chatLog;
@@ -79,7 +87,7 @@ public class SQLChatStorage extends ChatStorage {
         return CompletableFuture.supplyAsync(() -> {
             Set<ChatLog> logs = new HashSet<>();
 
-            try (Connection connection = dataSource.getConnection()) {
+            try (Connection connection = getConnection()) {
                 try (PreparedStatement statement = connection.prepareStatement(DatabaseConstants.SELECT_CHATLOG_UUID)) {
                     statement.setString(1, uuid.toString());
 
@@ -113,7 +121,7 @@ public class SQLChatStorage extends ChatStorage {
     }
 
     private void setupTables() {
-        try (Connection connection = dataSource.getConnection()) {
+        try (Connection connection = getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(DatabaseConstants.CREATE_TABLE_QUERY)) {
                 statement.execute();
             }
