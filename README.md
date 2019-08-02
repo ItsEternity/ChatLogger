@@ -14,3 +14,4 @@ The three options for viewing logs are:
 * [Hastebin](https://github.com/seejohnrun/haste-server) (You must be running your own Hastebin server)
 
 Here is a preview of using Pastebin:
+![alt text](https://i.imgur.com/EicPBq5.png)
