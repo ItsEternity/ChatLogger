@@ -13,5 +13,5 @@ The three options for viewing logs are:
 * [Pastebin](https://pastebin.com/)
 * [Hastebin](https://github.com/seejohnrun/haste-server) (You must be running your own Hastebin server)
 
-Here is a preview of using Pastebin:
+Here is a preview of using Pastebin (the format is configurable in the config.yml file):
 ![alt text](https://i.imgur.com/EicPBq5.png)
