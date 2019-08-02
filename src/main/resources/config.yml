@@ -1,0 +1,33 @@
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  username: username
+  password: password
+  database: default
+
+# The format you want your logs to look when pasting chatlogs
+# Possible placeholders:
+# * %uuid%: The player's uuid
+# * %player%: The player's name
+# * %server_name%: The name of the server that the chat log was sent on
+# * %player%: The player's name
+# * %timestamp%: The time & date this message was sent
+# * %log_type%: The type of chat message it was, either CHAT or COMMAND
+log-format: "[%timestamp%] [%server_name%] %player%: %message%"
+
+pastebin:
+  # Username to your Pastebin account
+  username: "username"
+
+  # Password to your Pastebin account
+  password: "password"
+
+  # Your developer key - obtain from here: https://pastebin.com/api.php
+  dev-key: "devkey"
+
+messages:
+  syntax-error: "&c /chatlogs <player>"
+  loading-chatlogs: "&eLoading chatlogs for &b%player%"
+  no-logs-found: "&cCould not find any chatlogs for %player%"
+  logs-link: "&a%player%'s &echatlogs: &a%link%"
+  cannot-find-uuid: "&cCannot find the UUID for %player%"

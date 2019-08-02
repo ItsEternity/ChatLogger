@@ -1,0 +1,8 @@
+name: ChatLogger
+main: dev.itseternity.chatlogger.ChatLoggerPlugin
+version: "1.0"
+commands:
+  chatlog:
+    description: "View a player's chat logs"
+    permission: chatlogger.view
+    aliases: [chatlogs, logs]
