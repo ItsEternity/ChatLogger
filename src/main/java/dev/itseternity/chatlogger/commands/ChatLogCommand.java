@@ -3,7 +3,7 @@ package dev.itseternity.chatlogger.commands;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dev.itseternity.chatlogger.ChatLoggerPlugin;
-import dev.itseternity.chatlogger.utils.Callback;
+import dev.itseternity.chatlogger.utils.UUIDCallback;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -58,7 +58,7 @@ public class ChatLogCommand implements CommandExecutor {
         return true;
     }
 
-    private void getUUID(String name, Callback uuidCallback) {
+    private void getUUID(String name, UUIDCallback uuidCallback) {
         // Let's check if the player is online first before calling the API
         Player player = Bukkit.getPlayer(name);
         if (player != null) {
